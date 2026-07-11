@@ -1,0 +1,6 @@
+{
+  "name": "Kit Sobrevivência MEI 2026",
+  "description": "Descubra se você está em risco com a Reforma Tributária de 2026 e organize seu MEI com nossa planilha inteligente e guias completos.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
