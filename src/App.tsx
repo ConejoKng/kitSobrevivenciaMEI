@@ -18,12 +18,10 @@ import {
   Grid,
   Check
 } from "lucide-react";
+import MOCKUP_IMAGE_PATH from "./assets/images/mockup_produto_1783739014078.jpg";
 
 // Real checkout link
 const CHECKOUT_LINK = "https://pay.kiwify.com.br/9vx5cN8";
-
-// Mockup image generated path
-const MOCKUP_IMAGE_PATH = "/src/assets/images/mockup_produto_1783739014078.jpg";
 
 export default function App() {
   // States
@@ -158,43 +156,21 @@ export default function App() {
         <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
-          <div className="lg:col-span-7 flex flex-col items-start space-y-6">
+          <div className="lg:col-span-7 flex flex-col items-start space-y-5">
             <div className="inline-flex items-center gap-1.5 bg-brand-secondary/50 text-brand-accent border border-brand-secondary px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wide">
               <Sparkles className="w-3.5 h-3.5 animate-pulse" />
               <span>ALERTA DE TRANSIÇÃO FISCAL</span>
             </div>
-            
-            <h1 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl tracking-tight text-white leading-[1.1]">
-              A Reforma Tributária de 2026 pode te desenquadrar do MEI sem você nem perceber
+
+            <h1 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl tracking-tight text-white leading-[1.15]">
+              Seu MEI pode ser desenquadrado em 2026 sem você perceber
             </h1>
-            
-            <p className="text-slate-200 text-lg sm:text-xl font-light leading-relaxed max-w-2xl">
-              Descubra em poucos minutos se você está em risco — e organize seu MEI com uma planilha que faz as contas por você.
+
+            <p className="text-slate-200 text-base sm:text-lg font-light leading-relaxed max-w-2xl">
+              Descubra em minutos se você está em risco e organize seu CNPJ com uma planilha que calcula tudo por você.
             </p>
-            
-            <div className="w-full sm:w-auto flex flex-col space-y-3 pt-2">
-              <a
-                href={CHECKOUT_LINK}
-                className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base px-8 py-4 rounded-xl text-center shadow-lg hover:shadow-brand-accent/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
-              >
-                Quero organizar meu MEI agora
-                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-              </a>
-              
-              <div className="flex items-center justify-center sm:justify-start gap-4 text-xs text-slate-300 font-medium pl-1">
-                <span className="flex items-center gap-1 text-emerald-400">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                  Garantia de 7 dias
-                </span>
-                <span className="text-slate-500">•</span>
-                <span className="flex items-center gap-1 text-emerald-400">
-                  <Clock className="w-4 h-4 text-emerald-400" />
-                  Acesso imediato
-                </span>
-              </div>
-            </div>
           </div>
-          
+
           <div className="lg:col-span-5 relative">
             <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-brand-accent/20 to-brand-secondary/30 blur-xl opacity-75"></div>
             <div className="relative bg-brand-secondary/25 border border-white/10 rounded-2xl p-3 shadow-2xl backdrop-blur-sm">
@@ -207,6 +183,30 @@ export default function App() {
               <div className="absolute top-6 right-6 bg-brand-accent text-brand-primary font-display font-extrabold text-xs px-3 py-1.5 rounded-lg shadow-md uppercase tracking-wider">
                 Atualizado 2026
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10 mt-10 flex flex-col items-center lg:items-start">
+          <div className="w-full sm:w-auto flex flex-col space-y-3">
+            <a
+              href={CHECKOUT_LINK}
+              className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base px-8 py-4 rounded-xl text-center shadow-lg hover:shadow-brand-accent/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
+            >
+              Quero organizar meu MEI agora
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </a>
+
+            <div className="flex items-center justify-center sm:justify-start gap-4 text-xs text-slate-300 font-medium pl-1">
+              <span className="flex items-center gap-1 text-emerald-400">
+                <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                Garantia de 7 dias
+              </span>
+              <span className="text-slate-500">•</span>
+              <span className="flex items-center gap-1 text-emerald-400">
+                <Clock className="w-4 h-4 text-emerald-400" />
+                Acesso imediato
+              </span>
             </div>
           </div>
         </div>
@@ -266,7 +266,7 @@ export default function App() {
                   Nota Fiscal Obrigatória
                 </h3>
                 <p className="text-slate-600 mt-2 text-sm leading-relaxed font-normal">
-                  A partir de 2027, emitir nota fiscal vai virar obrigatório em todas as vendas — inclusive para pessoa física.
+                  A partir de 2027, emitir nota fiscal vai virar obrigatório em todas as vendas, inclusive para pessoa física.
                 </p>
               </div>
             </div>
@@ -301,7 +301,7 @@ export default function App() {
           </h2>
           <div className="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
           <p className="text-slate-200 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto pt-2">
-            Chega de tentar entender a Reforma Tributária sozinho. Este kit junta uma planilha inteligente e dois guias em PDF que fazem o trabalho pesado por você — em português simples, sem juridiquês.
+            Chega de tentar entender a Reforma Tributária sozinho. Este kit junta uma planilha inteligente e dois guias em PDF que fazem o trabalho pesado por você, em português simples, sem juridiquês.
           </p>
         </div>
       </section>
@@ -333,7 +333,7 @@ export default function App() {
                   8 abas inclusas
                 </span>
                 <p className="text-slate-600 text-sm leading-relaxed font-normal">
-                  Painel automático, Diagnóstico de Limite (que já soma CPF + CNPJ), simulador MEI ou ME, controle do DAS mês a mês e calendário 2026 — tudo com fórmulas prontas, você só preenche o que for pedido.
+                  Painel automático, Diagnóstico de Limite (que já soma CPF + CNPJ), simulador MEI ou ME, controle do DAS mês a mês e calendário 2026, tudo com fórmulas prontas, você só preenche o que for pedido.
                 </p>
               </div>
               <div className="border-t border-slate-200 mt-6 pt-6 flex items-center justify-between">
@@ -600,7 +600,7 @@ export default function App() {
                 } overflow-hidden`}
               >
                 <div className="p-5 sm:p-6 text-slate-600 text-sm sm:text-base leading-relaxed">
-                  Não. Você só preenche as células amarelas — todo o resto (cálculos, alertas, gráficos) já vem pronto e funciona sozinho.
+                  Não. Você só preenche as células amarelas. Todo o resto (cálculos, alertas, gráficos) já vem pronto e funciona sozinho.
                 </div>
               </div>
             </div>
@@ -648,7 +648,7 @@ export default function App() {
                 } overflow-hidden`}
               >
                 <div className="p-5 sm:p-6 text-slate-600 text-sm sm:text-base leading-relaxed">
-                  Não. É um material informativo que te ajuda a se organizar e a chegar mais preparado numa conversa com seu contador — decisões importantes continuam precisando de um profissional.
+                  Não. É um material informativo que te ajuda a se organizar e a chegar mais preparado numa conversa com seu contador. Decisões importantes continuam precisando de um profissional.
                 </div>
               </div>
             </div>
