@@ -20,41 +20,23 @@ import {
 } from "lucide-react";
 import MOCKUP_IMAGE_PATH from "./assets/images/mockup_produto_1783739014078.jpg";
 
-// Real checkout link
-const CHECKOUT_LINK = "https://pay.kiwify.com.br/9vx5cN8";
+// ⚠️ LINKS DE CHECKOUT DO KIWIFY — troque cada um pelo link real da oferta correspondente.
+// Enquanto não houver links separados, todos apontam para o link atual (provisório).
+const CHECKOUT_ESSENCIAL = "https://pay.kiwify.com.br/9vx5cN8"; // Kit Essencial — R$ 9,90
+const CHECKOUT_COMPLETO = "https://pay.kiwify.com.br/9vx5cN8"; // Kit Completo — R$ 19,90
+const CHECKOUT_COMPLETO_PROMO = "https://pay.kiwify.com.br/9vx5cN8"; // Upsell do popup — Kit Completo em promoção
 
 export default function App() {
   // States
-  const [isHeaderSticky, setIsHeaderSticky] = useState(false);
-  const [showMobileStickyBtn, setShowMobileStickyBtn] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  
+  const [showUpsellModal, setShowUpsellModal] = useState(false);
+
   // Timer state (24h loop)
   const [timeLeft, setTimeLeft] = useState({
     hours: 23,
     minutes: 59,
     seconds: 59,
   });
-
-  // Track scroll position for sticky elements
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 150) {
-        setIsHeaderSticky(true);
-      } else {
-        setIsHeaderSticky(false);
-      }
-
-      if (window.scrollY > 400) {
-        setShowMobileStickyBtn(true);
-      } else {
-        setShowMobileStickyBtn(false);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Countdown Timer Logic
   useEffect(() => {
@@ -83,49 +65,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans select-none selection:bg-brand-accent selection:text-brand-primary">
-      
-      {/* 1) STICKY HEADER (Appears on scroll) */}
-      <AnimatePresence>
-        {isHeaderSticky && (
-          <motion.header
-            initial={{ y: -80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -80, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed top-0 left-0 right-0 z-40 glass-header py-3 px-4 md:px-8 flex items-center justify-between shadow-md"
-          >
-            <div className="flex items-center gap-2">
-              <span className="w-8 h-8 rounded bg-brand-primary flex items-center justify-center text-brand-accent font-display font-extrabold text-sm tracking-tight">
-                MEI
-              </span>
-              <div>
-                <p className="font-display font-bold text-xs md:text-sm text-brand-primary tracking-tight leading-none">
-                  Kit Sobrevivência MEI
-                </p>
-                <p className="text-[10px] text-slate-500 font-medium leading-none mt-1">
-                  Reforma Tributária 2026
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex items-center gap-4">
-              {/* Countdown badge in sticky header */}
-              <div className="hidden lg:flex items-center gap-1.5 bg-amber-50 text-amber-700 px-2.5 py-1 rounded-full text-xs font-semibold border border-amber-200">
-                <Clock className="w-3.5 h-3.5 animate-pulse text-brand-accent" />
-                <span>Oferta Limitada: {String(timeLeft.hours).padStart(2, "0")}:{String(timeLeft.minutes).padStart(2, "0")}:{String(timeLeft.seconds).padStart(2, "0")}</span>
-              </div>
-
-              <a
-                href={CHECKOUT_LINK}
-                className="bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-bold text-xs md:text-sm px-4 md:px-5 py-2 rounded-lg shadow hover:shadow-md transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-1.5"
-              >
-                Comprar agora
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </motion.header>
-        )}
-      </AnimatePresence>
 
       {/* Hero Header (Non-sticky top banner) */}
       <header className="bg-brand-primary text-white py-4 px-4 md:px-8 border-b border-brand-secondary/40">
@@ -190,7 +129,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10 mt-10 flex flex-col items-center lg:items-start">
           <div className="w-full sm:w-auto flex flex-col space-y-3">
             <a
-              href={CHECKOUT_LINK}
+              href="#pricing"
               className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base px-8 py-4 rounded-xl text-center shadow-lg hover:shadow-brand-accent/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
             >
               Quero organizar meu MEI agora
@@ -464,64 +403,38 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6) GUARANTEE SECTION */}
-      <section className="py-20 px-4 md:px-8 bg-brand-primary text-white relative overflow-hidden">
-        {/* Subtle radial glow representing the guarantee protection shield */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-secondary/35 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10 space-y-6">
-          <div className="inline-flex justify-center mx-auto">
-            <div className="w-20 h-20 rounded-full bg-brand-green-light flex items-center justify-center text-brand-green-dark shadow-lg ring-4 ring-brand-green-dark/30">
-              <ShieldCheck className="w-12 h-12 stroke-[2.2]" />
-            </div>
-          </div>
-          
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-accent tracking-tight">
-            Garantia incondicional de 7 dias
-          </h2>
-          
-          <p className="text-slate-100 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">
-            Se por qualquer motivo você achar que o kit não é para você, é só pedir reembolso em até 7 dias. Devolvemos 100% do seu dinheiro, sem perguntas.
-          </p>
-          
-          <div className="pt-2 text-xs text-slate-300 font-medium">
-            🔒 Compra 100% Protegida · Processamento Criptografado
-          </div>
-        </div>
-      </section>
-
       {/* 7) PRICING SECTION */}
       <section id="pricing" className="py-24 px-4 md:px-8 bg-white relative">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center max-w-2xl mx-auto mb-12">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs uppercase font-bold tracking-wider text-brand-secondary bg-brand-secondary/10 px-3 py-1.5 rounded-full">Oferta Especial</span>
             <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-primary tracking-tight mt-3">
-              Tudo isso por um preço simbólico
+              Escolha o plano ideal para você
             </h2>
             <p className="text-slate-500 mt-2 font-light text-sm sm:text-base">
               Preço acessível para ajudar o máximo de microempreendedores autônomos nesta transição.
             </p>
           </div>
 
-          <div className="max-w-md mx-auto relative">
-            {/* Live countdown timer widget */}
-            <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-rose-600 text-white font-display font-bold text-xs px-4 py-1.5 rounded-full shadow-md z-10 uppercase tracking-wider flex items-center gap-1.5 animate-bounce">
+          {/* Live countdown timer widget */}
+          <div className="flex justify-center mb-10">
+            <div className="bg-rose-600 text-white font-display font-bold text-xs px-4 py-1.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1.5 animate-bounce">
               <Clock className="w-3.5 h-3.5" />
               <span>Oferta por tempo limitado: {String(timeLeft.hours).padStart(2, "0")}:{String(timeLeft.minutes).padStart(2, "0")}:{String(timeLeft.seconds).padStart(2, "0")}</span>
             </div>
+          </div>
 
-            <div className="bg-slate-50 rounded-3xl p-8 border-2 border-brand-accent shadow-xl flex flex-col justify-between relative overflow-hidden text-center pt-12">
-              {/* Card visual elements */}
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-accent/10 rounded-bl-full pointer-events-none"></div>
-              
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+            {/* Plano Essencial — R$ 9,90 */}
+            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between relative overflow-hidden text-center">
               <div>
-                <p className="text-slate-400 font-medium line-through text-lg">
-                  De R$ 67,00
-                </p>
-                <div className="mt-2 flex flex-col items-center">
+                <span className="inline-block bg-slate-100 text-slate-600 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                  Kit Essencial
+                </span>
+                <div className="mt-5 flex flex-col items-center">
                   <span className="text-slate-500 text-xs font-semibold uppercase tracking-wide">por apenas</span>
                   <p className="font-display font-black text-4xl sm:text-5xl text-brand-primary tracking-tight mt-1">
-                    <span className="text-xl sm:text-2xl font-bold align-super">R$</span> 32,90
+                    <span className="text-xl sm:text-2xl font-bold align-super">R$</span> 9,90
                   </p>
                 </div>
                 <p className="text-slate-500 text-xs mt-3 font-semibold leading-relaxed">
@@ -529,19 +442,68 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Perks list inside pricing */}
               <div className="my-8 text-left space-y-3.5 border-y border-slate-200 py-6">
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
-                  <span>Acesso completo à Planilha Inteligente (8 abas)</span>
+                  <span>Planilha Inteligente completa (8 abas)</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-slate-700">
+                  <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
+                  <span>Manual Ilustrado de Uso da planilha</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-slate-400">
+                  <Lock className="w-4 h-4 text-slate-300 shrink-0" />
+                  <span className="line-through">Guia Completo da Reforma Tributária</span>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowUpsellModal(true)}
+                className="w-full bg-white hover:bg-slate-50 text-brand-primary border-2 border-brand-primary font-display font-extrabold text-base px-6 py-4 rounded-2xl text-center transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
+              >
+                Quero o Kit Essencial
+                <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+
+            {/* Plano Completo — R$ 19,90 (destaque) */}
+            <div className="bg-slate-50 rounded-3xl p-8 border-2 border-brand-accent shadow-xl flex flex-col justify-between relative overflow-hidden text-center">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-accent/10 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute top-5 left-1/2 -translate-x-1/2 bg-brand-accent text-brand-primary font-display font-extrabold text-[11px] px-3 py-1 rounded-full shadow uppercase tracking-wider">
+                Mais vendido
+              </div>
+
+              <div className="pt-6">
+                <span className="inline-block bg-brand-primary text-brand-accent text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
+                  Kit Completo
+                </span>
+                <p className="text-slate-400 font-medium line-through text-base mt-4">
+                  De R$ 67,00
+                </p>
+                <div className="mt-1 flex flex-col items-center">
+                  <span className="text-slate-500 text-xs font-semibold uppercase tracking-wide">por apenas</span>
+                  <p className="font-display font-black text-4xl sm:text-5xl text-brand-primary tracking-tight mt-1">
+                    <span className="text-xl sm:text-2xl font-bold align-super">R$</span> 19,90
+                  </p>
+                </div>
+                <p className="text-slate-500 text-xs mt-3 font-semibold leading-relaxed">
+                  Pagamento único · Acesso vitalício · Sem mensalidade
+                </p>
+              </div>
+
+              <div className="my-8 text-left space-y-3.5 border-y border-slate-200 py-6">
+                <div className="flex items-center gap-3 text-sm text-slate-700">
+                  <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
+                  <span>Planilha Inteligente completa (8 abas)</span>
+                </div>
+                <div className="flex items-center gap-3 text-sm text-slate-700">
+                  <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
+                  <span>Manual Ilustrado de Uso da planilha</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
                   <span>Guia Completo da Reforma Tributária 2026</span>
-                </div>
-                <div className="flex items-center gap-3 text-sm text-slate-700">
-                  <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
-                  <span>Manual Ilustrado de Uso</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
@@ -551,10 +513,10 @@ export default function App() {
 
               <div className="space-y-4">
                 <a
-                  href={CHECKOUT_LINK}
+                  href={CHECKOUT_COMPLETO}
                   className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base sm:text-lg px-6 py-4 rounded-2xl text-center shadow-lg hover:shadow-brand-accent/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
                 >
-                  Quero garantir meu Kit
+                  Quero o Kit Completo
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </a>
 
@@ -704,6 +666,32 @@ export default function App() {
         </div>
       </section>
 
+      {/* GUARANTEE SECTION (após o FAQ) */}
+      <section className="py-20 px-4 md:px-8 bg-brand-primary text-white relative overflow-hidden">
+        {/* Subtle radial glow representing the guarantee protection shield */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-brand-secondary/35 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10 space-y-6">
+          <div className="inline-flex justify-center mx-auto">
+            <div className="w-20 h-20 rounded-full bg-brand-green-light flex items-center justify-center text-brand-green-dark shadow-lg ring-4 ring-brand-green-dark/30">
+              <ShieldCheck className="w-12 h-12 stroke-[2.2]" />
+            </div>
+          </div>
+
+          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-brand-accent tracking-tight">
+            Garantia incondicional de 7 dias
+          </h2>
+
+          <p className="text-slate-100 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">
+            Se por qualquer motivo você achar que o kit não é para você, é só pedir reembolso em até 7 dias. Devolvemos 100% do seu dinheiro, sem perguntas.
+          </p>
+
+          <div className="pt-2 text-xs text-slate-300 font-medium">
+            🔒 Compra 100% Protegida · Processamento Criptografado
+          </div>
+        </div>
+      </section>
+
       {/* 9) FINAL CTA SECTION */}
       <section className="bg-brand-primary text-white py-24 px-4 md:px-8 relative overflow-hidden">
         {/* Absolute design overlay elements */}
@@ -725,7 +713,7 @@ export default function App() {
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
             <a
-              href={CHECKOUT_LINK}
+              href="#pricing"
               className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base sm:text-lg px-8 py-5 rounded-2xl text-center shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
             >
               Quero garantir meu Kit MEI 2026 agora
@@ -784,23 +772,70 @@ export default function App() {
         </div>
       </footer>
 
-      {/* FLOATING MOBILE CTA BUTTON (Stays visible on mobile while scrolling) */}
+      {/* UPSELL MODAL (abre ao clicar no Kit Essencial) */}
       <AnimatePresence>
-        {showMobileStickyBtn && (
+        {showUpsellModal && (
           <motion.div
-            initial={{ y: 80, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 80, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="md:hidden fixed bottom-5 left-4 right-4 z-40"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-brand-primary/70 backdrop-blur-sm"
+            onClick={() => setShowUpsellModal(false)}
           >
-            <a
-              href={CHECKOUT_LINK}
-              className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-sm py-4 px-5 rounded-2xl shadow-xl border border-amber-300 text-center flex items-center justify-center gap-1.5 active:scale-95 transition-transform"
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.25, ease: "easeOut" }}
+              className="relative bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 text-center"
+              onClick={(e) => e.stopPropagation()}
             >
-              <span>Quero Garantir Meu Kit por R$ 32,90</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
+              <button
+                type="button"
+                onClick={() => setShowUpsellModal(false)}
+                aria-label="Fechar"
+                className="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 flex items-center justify-center text-lg font-bold transition-colors"
+              >
+                ×
+              </button>
+
+              <span className="inline-flex items-center gap-1.5 bg-rose-100 text-rose-700 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                <Sparkles className="w-3.5 h-3.5" />
+                Espere! Oferta especial
+              </span>
+
+              <h3 className="font-display font-extrabold text-2xl text-brand-primary tracking-tight mt-4 leading-snug">
+                Leve o Kit Completo com desconto
+              </h3>
+
+              <p className="text-slate-600 text-sm mt-3 leading-relaxed">
+                Por só R$ 5 a mais você garante também o <strong>Guia Completo da Reforma Tributária 2026</strong> e a <strong>Garantia de 7 dias</strong>. Só nesta página:
+              </p>
+
+              <div className="mt-5 flex flex-col items-center">
+                <span className="text-slate-400 line-through text-sm">De R$ 19,90</span>
+                <p className="font-display font-black text-4xl text-brand-primary tracking-tight mt-1">
+                  <span className="text-xl font-bold align-super">R$</span> 14,90
+                </p>
+              </div>
+
+              <div className="mt-6 space-y-3">
+                <a
+                  href={CHECKOUT_COMPLETO_PROMO}
+                  className="w-full bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base px-6 py-4 rounded-2xl text-center shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
+                >
+                  Sim! Quero o Kit Completo por R$ 14,90
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </a>
+                <a
+                  href={CHECKOUT_ESSENCIAL}
+                  className="block w-full text-slate-500 hover:text-slate-700 text-sm font-medium py-2 transition-colors"
+                >
+                  Não, continuar só com o Essencial por R$ 9,90
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
