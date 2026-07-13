@@ -20,11 +20,10 @@ import {
 } from "lucide-react";
 import MOCKUP_IMAGE_PATH from "./assets/images/mockup_produto_1783739014078.jpg";
 
-// ⚠️ LINKS DE CHECKOUT DO KIWIFY — troque cada um pelo link real da oferta correspondente.
-// Enquanto não houver links separados, todos apontam para o link atual (provisório).
-const CHECKOUT_ESSENCIAL = "https://pay.kiwify.com.br/9vx5cN8"; // Kit Essencial — R$ 9,90
-const CHECKOUT_COMPLETO = "https://pay.kiwify.com.br/9vx5cN8"; // Kit Completo — R$ 19,90
-const CHECKOUT_COMPLETO_PROMO = "https://pay.kiwify.com.br/9vx5cN8"; // Upsell do popup — Kit Completo em promoção
+// Links de checkout de cada oferta
+const CHECKOUT_ESSENCIAL = "https://pay.lowify.com.br/checkout?product_id=Z5gkaB"; // Kit Essencial — R$ 9,90
+const CHECKOUT_COMPLETO = "https://pay.lowify.com.br/checkout?product_id=Y3PbaG"; // Kit Completo — R$ 19,90
+const CHECKOUT_COMPLETO_PROMO = "https://pay.lowify.com.br/checkout?product_id=l9eC7k"; // Upsell do popup — Kit Completo em promoção
 
 export default function App() {
   // States
@@ -65,29 +64,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans select-none selection:bg-brand-accent selection:text-brand-primary">
-
-      {/* Hero Header (Non-sticky top banner) */}
-      <header className="bg-brand-primary text-white py-4 px-4 md:px-8 border-b border-brand-secondary/40">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <span className="w-9 h-9 rounded-lg bg-brand-accent flex items-center justify-center text-brand-primary font-display font-black text-base tracking-tight shadow-md">
-              MEI
-            </span>
-            <div>
-              <p className="font-display font-bold text-sm md:text-base tracking-tight leading-none text-white">
-                Kit Sobrevivência MEI 2026
-              </p>
-              <p className="text-[10px] md:text-xs text-slate-300 font-light mt-0.5">
-                Guia Inteligente de Transição
-              </p>
-            </div>
-          </div>
-          <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-300 font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-            <span>Ambiente Seguro 256-bit SSL</span>
-          </div>
-        </div>
-      </header>
 
       {/* 1) HERO SECTION */}
       <section className="relative overflow-hidden bg-brand-primary text-white pt-12 pb-20 md:py-24 px-4 md:px-8">
@@ -132,7 +108,7 @@ export default function App() {
               href="#pricing"
               className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base px-8 py-4 rounded-xl text-center shadow-lg hover:shadow-brand-accent/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2 group"
             >
-              Quero organizar meu MEI agora
+              Obter Oferta
               <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
 
@@ -228,20 +204,50 @@ export default function App() {
         </div>
       </section>
 
-      {/* 3) SOLUTION INTRO */}
-      <section className="py-20 px-4 md:px-8 bg-brand-primary text-white relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-brand-primary to-slate-900 opacity-90 pointer-events-none"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10 space-y-6">
-          <div className="inline-flex items-center gap-1 bg-brand-secondary text-brand-accent px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide border border-white/5 uppercase">
-            <span>Diagnóstico Definitivo</span>
+      {/* BONUS SECTION (logo após "Por que isso importa agora") */}
+      <section className="py-20 px-4 md:px-8 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs uppercase font-bold tracking-wider text-brand-secondary bg-brand-secondary/10 px-3 py-1.5 rounded-full">Bônus Exclusivos</span>
+            <h2 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-brand-primary tracking-tight mt-4">
+              E ainda tem 3 bônus pra você sair na frente
+            </h2>
+            <p className="text-slate-500 mt-3 text-sm sm:text-base font-light">
+              De graça para quem garantir o Kit Completo hoje.
+            </p>
           </div>
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl text-white tracking-tight leading-tight">
-            O Kit Sobrevivência MEI 2026 traduz tudo isso pra você
-          </h2>
-          <div className="w-16 h-1 bg-brand-accent mx-auto mt-4 rounded-full"></div>
-          <p className="text-slate-200 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto pt-2">
-            Chega de tentar entender a Reforma Tributária sozinho. Este kit junta uma planilha inteligente e dois guias em PDF que fazem o trabalho pesado por você, em português simples, sem juridiquês.
-          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200/60 text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+              <span className="text-4xl">🎁</span>
+              <h3 className="font-display font-bold text-lg text-brand-primary leading-snug mt-4">
+                Calendário Fiscal 2026
+              </h3>
+              <p className="text-slate-600 mt-2 text-sm leading-relaxed font-normal">
+                Todas as datas de DAS, DASN-SIMEI e prazos importantes do ano em um só lugar, prontas para você não perder nenhuma.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200/60 text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+              <span className="text-4xl">🎁</span>
+              <h3 className="font-display font-bold text-lg text-brand-primary leading-snug mt-4">
+                Checklist Anti-Desenquadramento
+              </h3>
+              <p className="text-slate-600 mt-2 text-sm leading-relaxed font-normal">
+                Os sinais de alerta que mostram que você está perto do limite, para agir antes que vire um problema.
+              </p>
+            </div>
+
+            <div className="bg-slate-50 p-8 rounded-2xl border border-slate-200/60 text-center hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
+              <span className="text-4xl">🎁</span>
+              <h3 className="font-display font-bold text-lg text-brand-primary leading-snug mt-4">
+                Modelo de Nota Fiscal Avulsa
+              </h3>
+              <p className="text-slate-600 mt-2 text-sm leading-relaxed font-normal">
+                Um modelo pronto para você começar a emitir nota certo desde a primeira venda, sem complicação.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -294,7 +300,7 @@ export default function App() {
                   Guia da Reforma Tributária
                 </h3>
                 <span className="inline-block bg-slate-200/80 text-slate-700 text-[11px] font-bold px-2 py-0.5 rounded-md mt-1 mb-4 uppercase">
-                  PDF, 17 páginas
+                  Guia Digital Interativo
                 </span>
                 <p className="text-slate-600 text-sm leading-relaxed font-normal">
                   Tudo o que muda para o MEI em 2026 explicado em linguagem simples: nota fiscal obrigatória, o novo Nanoempreendedor, e como não cair no desenquadramento.
@@ -319,7 +325,7 @@ export default function App() {
                   Manual de Uso da Planilha
                 </h3>
                 <span className="inline-block bg-slate-200/80 text-slate-700 text-[11px] font-bold px-2 py-0.5 rounded-md mt-1 mb-4 uppercase">
-                  PDF Explicativo
+                  Guia Visual Digital
                 </span>
                 <p className="text-slate-600 text-sm leading-relaxed font-normal">
                   Passo a passo de cada aba, com prints reais, para você usar a planilha com confiança desde o primeiro dia.
@@ -424,9 +430,9 @@ export default function App() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto items-stretch">
             {/* Plano Essencial — R$ 9,90 */}
-            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm flex flex-col justify-between relative overflow-hidden text-center">
+            <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-md flex flex-col justify-between relative overflow-hidden text-center transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
               <div>
                 <span className="inline-block bg-slate-100 text-slate-600 text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wide">
                   Kit Essencial
@@ -455,6 +461,10 @@ export default function App() {
                   <Lock className="w-4 h-4 text-slate-300 shrink-0" />
                   <span className="line-through">Guia Completo da Reforma Tributária</span>
                 </div>
+                <div className="flex items-center gap-3 text-sm text-slate-400">
+                  <Lock className="w-4 h-4 text-slate-300 shrink-0" />
+                  <span className="line-through">3 bônus exclusivos</span>
+                </div>
               </div>
 
               <button
@@ -468,8 +478,9 @@ export default function App() {
             </div>
 
             {/* Plano Completo — R$ 19,90 (destaque) */}
-            <div className="bg-slate-50 rounded-3xl p-8 border-2 border-brand-accent shadow-xl flex flex-col justify-between relative overflow-hidden text-center">
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand-accent/10 rounded-bl-full pointer-events-none"></div>
+            <div className="bg-gradient-to-b from-white to-slate-50 rounded-3xl p-8 border-2 border-brand-accent shadow-2xl shadow-brand-accent/10 flex flex-col justify-between relative overflow-hidden text-center transition-all duration-300 hover:-translate-y-1">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-brand-accent/10 rounded-bl-full pointer-events-none"></div>
+              <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-accent via-amber-300 to-brand-accent"></div>
               <div className="absolute top-5 left-1/2 -translate-x-1/2 bg-brand-accent text-brand-primary font-display font-extrabold text-[11px] px-3 py-1 rounded-full shadow uppercase tracking-wider">
                 Mais vendido
               </div>
@@ -508,6 +519,22 @@ export default function App() {
                 <div className="flex items-center gap-3 text-sm text-slate-700">
                   <Check className="w-4 h-4 text-emerald-500 stroke-[3.5] shrink-0" />
                   <span>Garantia total de devolução de 100% em 7 dias</span>
+                </div>
+              </div>
+
+              <div className="mb-6 bg-brand-primary/5 border border-brand-accent/30 rounded-2xl p-5 text-left space-y-2.5">
+                <p className="text-xs font-bold uppercase tracking-wider text-brand-secondary mb-1">Só aqui, você também leva de bônus:</p>
+                <div className="flex items-center gap-2.5 text-sm text-slate-700">
+                  <span className="text-base">🎁</span>
+                  <span>Calendário Fiscal 2026</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-sm text-slate-700">
+                  <span className="text-base">🎁</span>
+                  <span>Checklist Anti-Desenquadramento</span>
+                </div>
+                <div className="flex items-center gap-2.5 text-sm text-slate-700">
+                  <span className="text-base">🎁</span>
+                  <span>Modelo de Nota Fiscal Avulsa</span>
                 </div>
               </div>
 
@@ -686,47 +713,18 @@ export default function App() {
             Se por qualquer motivo você achar que o kit não é para você, é só pedir reembolso em até 7 dias. Devolvemos 100% do seu dinheiro, sem perguntas.
           </p>
 
-          <div className="pt-2 text-xs text-slate-300 font-medium">
-            🔒 Compra 100% Protegida · Processamento Criptografado
-          </div>
-        </div>
-      </section>
-
-      {/* 9) FINAL CTA SECTION */}
-      <section className="bg-brand-primary text-white py-24 px-4 md:px-8 relative overflow-hidden">
-        {/* Absolute design overlay elements */}
-        <div className="absolute inset-0 opacity-[0.03] bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px] pointer-events-none"></div>
-        <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-secondary/40 rounded-full blur-3xl pointer-events-none"></div>
-        
-        <div className="max-w-4xl mx-auto text-center relative z-10 space-y-8">
-          <span className="text-brand-accent text-xs uppercase font-bold tracking-widest bg-brand-secondary px-3.5 py-1.5 rounded-full border border-white/5">
-            Ação Imediata
-          </span>
-          
-          <h2 className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
-            Não deixe a Reforma Tributária te pegar de surpresa
-          </h2>
-          
-          <p className="text-slate-300 text-lg md:text-xl font-light leading-relaxed max-w-2xl mx-auto">
-            Em poucos minutos você já está com seu MEI organizado.
-          </p>
-          
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <div className="pt-2">
             <a
               href="#pricing"
-              className="w-full sm:w-auto bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base sm:text-lg px-8 py-5 rounded-2xl text-center shadow-xl transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center gap-2"
+              className="inline-flex items-center justify-center gap-2 bg-brand-accent hover:bg-brand-accent-hover text-brand-primary font-display font-extrabold text-base px-8 py-4 rounded-xl shadow-lg transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 group"
             >
-              Quero garantir meu Kit MEI 2026 agora
-              <ArrowRight className="w-5 h-5" />
+              Quero garantir meu Kit agora
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
             </a>
           </div>
 
-          <div className="flex items-center justify-center gap-5 pt-4 text-xs text-slate-400">
-            <span>🛡️ Transação Segura</span>
-            <span>•</span>
-            <span>💳 Liberação Imediata</span>
-            <span>•</span>
-            <span>🌟 Satisfação 100% Garantida</span>
+          <div className="pt-2 text-xs text-slate-300 font-medium">
+            🔒 Compra 100% Protegida · Processamento Criptografado
           </div>
         </div>
       </section>
